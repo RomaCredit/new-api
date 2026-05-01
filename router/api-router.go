@@ -329,6 +329,15 @@ func SetApiRouter(router *gin.Engine) {
 			taskRoute.GET("/", middleware.AdminAuth(), controller.GetAllTask)
 		}
 
+		// Image Playground 异步任务（前端只提交 + 轮询，长耗时调用在后端 goroutine 完成）
+		playgroundImageRoute := apiRouter.Group("/playground/image")
+		playgroundImageRoute.Use(middleware.UserAuth())
+		{
+			playgroundImageRoute.POST("/submit", controller.SubmitPlaygroundImageTask)
+			playgroundImageRoute.GET("/status/:id", controller.GetPlaygroundImageTaskStatus)
+			playgroundImageRoute.POST("/cancel/:id", controller.CancelPlaygroundImageTask)
+		}
+
 		vendorRoute := apiRouter.Group("/vendors")
 		vendorRoute.Use(middleware.AdminAuth())
 		{

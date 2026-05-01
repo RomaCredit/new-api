@@ -13,6 +13,11 @@ web/classic/dist
 web/node_modules
 web/dist
 .env
+.env.local
+.env.*.local
+.air_tmp/
+new-api-prod-*.sql
+new-api-prod-latest.sql
 one-api
 new-api
 /__debug_bin*

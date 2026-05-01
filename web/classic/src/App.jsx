@@ -44,6 +44,7 @@ import Task from './pages/Task';
 import ModelPage from './pages/Model';
 import ModelDeploymentPage from './pages/ModelDeployment';
 import Playground from './pages/Playground';
+import ImagePlayground from './pages/ImagePlayground';
 import Subscription from './pages/Subscription';
 import OAuth2Callback from './components/auth/OAuth2Callback';
 import PersonalSetting from './components/settings/PersonalSetting';
@@ -153,6 +154,14 @@ function App() {
             <PrivateRoute>
               <Playground />
             </PrivateRoute>
+          }
+        />
+        <Route
+          path='/image-playground'
+          element={
+            <Suspense fallback={<Loading></Loading>} key={location.pathname}>
+              <ImagePlayground />
+            </Suspense>
           }
         />
         <Route
